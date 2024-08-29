@@ -8,6 +8,6 @@ For Conculsions.txt it is generated when the function call createConculsion.txt 
 For the spreadsheets we created a generic function saveToFile, that when is called it checks if the spreadsheet
 with that name exists and if it doesn't it creates the file and writes the propper output.
 Group Member contribution
-Keith Garri 100%
-Christian   100%
-Nathan Cobb 100%
+Keith Garri 	      100%
+Christian Ellington   100%
+Nathan Cobb 	      100%
