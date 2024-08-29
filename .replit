@@ -1,0 +1,11 @@
+entrypoint = " PA-1-Source/PA-1-Source.py"
+modules = ["python-3.12"]
+
+[extension]
+outputDirectory = "PA-1-Source"
+[nix]
+channel = "stable-24_05"
+
+[deployment]
+run = ["python3", "PA-1-Source/PA-1-Source.py"]
+deploymentTarget = "cloudrun"
