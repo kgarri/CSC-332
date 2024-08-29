@@ -1,3 +1,4 @@
+#Keith Garri J00689732, August 28, 2024
 import time as time
 import random as random
 from  statistics import mean,median 
@@ -51,7 +52,7 @@ def bruteForceAlgV2(a,b): #brute force Alg version 2 going downwards till it dev
     end = time.time()
     return(end-start,gcf)
 
-def orginaleEculidsAlg(a,b):
+def orginaleEculidsAlg(a,b): #The first version of the eculids alg
     r=1 # in python you have to declare a variable before using it in a loop
     start = time.time()
     while r !=0:
@@ -61,7 +62,7 @@ def orginaleEculidsAlg(a,b):
     end = time.time()
     return(end-start, a)
 
-def secEculidsAlg(a,b):
+def secEculidsAlg(a,b): #the second version of the eculids alg
     r = 1 # in python you have to declare a variable before using it in a loop
     start = time.time()
     while r !=0:
@@ -77,17 +78,17 @@ def secEculidsAlg(a,b):
     end = time.time()
     return(end-start, a)
 
-def eculidsAlgRecursive(a,b):
+def eculidsAlgRecursive(a,b): # a recursive version of eculids alg
     if (a == 0):
         return(b)
     return(eculidsAlgRecursive(b%a, a))
 
-def secondsToMilliSeconds(seconds):
+def secondsToMilliSeconds(seconds): # function to convert time from seconds to milliseconds
     return (seconds/pow(10,-3))
 
 
     
-def saveToFile(filename,arr,header):
+def saveToFile(filename,arr,header): # the spreadsheet saving file
     try:
         os.remove(filename)
     except OSError:
@@ -96,7 +97,7 @@ def saveToFile(filename,arr,header):
         f.write(header)
         f.write("\n".join([item.toString() for item in arr]))
 
-class stats():
+class stats(): # stats class used to calculate the stats and save them
     def __init__(self,objects):
         self.objects= objects
 
@@ -108,7 +109,7 @@ class stats():
         arr.append("Median Time, " + str(median([item.time for item in self.objects])))
         return('\n'.join(arr))
     
-def objectCompairisons(objectarr1, objectarr2):
+def objectCompairisons(objectarr1, objectarr2): # comparision function to compare the diffrent versions of euclids alg
     # we know that the order of objects will be the same no matter what do to how the orginal for loop is structured this is backed up by the file outputs
     arr = []
     diffarr = []
@@ -120,7 +121,7 @@ def objectCompairisons(objectarr1, objectarr2):
             return(len(arr),0)
     return(len(arr), mean(diffarr))
 
-def createConclusionsTxt(brute1, brute2, euclids1, euclids2):
+def createConclusionsTxt(brute1, brute2, euclids1, euclids2): # function for creating conclussions.txt
     try:
         os.remove("Conclusions.txt")
     except OSError:
@@ -148,38 +149,48 @@ def createConclusionsTxt(brute1, brute2, euclids1, euclids2):
 
     
 
-if __name__ == "__main__":
+if __name__ == "__main__": #Main for the project
+    #results arrays
     brute1arr = []
     brute2arr = []
     eculid1arr = []
     eculid2arr = []
     eculid3arr = []
+    #File Headers as consts
     HEADER1 = "Number One, Number Two, Their GCD, Time Spent(Milliseconds)\n"
     HEADER2 = "Statistics, Milliseconds\n"
+    #seed for the random number gen
     seed = time.time()
     random.seed(seed)
+    # For loop of 1000
     for i in range(1000): 
-        a = random.randint(0,100000)
+        #randint from 0,100000
+        a = random.randint(0,100000) 
         b = random.randint(0,100000)
 
+        #function calls for burteForceAlgV1
         algtime, gcf = bruteForceAlgV1(a,b)
         brute1arr.append(gcfInfo(a,b,gcf,algtime))
 
+        #function calls for bruteForceAlgV2
         algtime, gcf = bruteForceAlgV2(a,b)
         brute2arr.append(gcfInfo(a,b,gcf,algtime))
 
+        #function calls for first eculid alg
         algtime, gcf = orginaleEculidsAlg(a,b)
         eculid1arr.append(gcfInfo(a,b,gcf,algtime))
-
+        
+        #function calls for second eculids alg
         algtime, gcf = secEculidsAlg(a,b)
         eculid2arr.append(gcfInfo(a,b,gcf,algtime))
 
-
+        #function calls for recursive eculids alg 
         start = time.time()
         gcf = eculidsAlgRecursive(a,b)
         algtime = time.time() - start
         eculid3arr.append(gcfInfo(a,b,gcf,algtime))
 
+    #saveToFile Function Calls
     saveToFile("BF_v1_Results.csv",brute1arr,HEADER1)
     saveToFile("BF_v1_Statistics.csv", [stats(brute1arr)],HEADER2)
 
@@ -195,6 +206,7 @@ if __name__ == "__main__":
     saveToFile("SE_Results.csv", eculid3arr,HEADER1)
     saveToFile("SE_Statistics.csv", [stats(eculid3arr)],HEADER2)
 
+    #Function call conclussions.txt
     createConclusionsTxt(brute1arr,brute2arr,eculid1arr,eculid2arr)
 
     
