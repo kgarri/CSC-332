@@ -1,0 +1,13 @@
+How to run the program? 
+	1. If you have python installed on your system you can just execute the python file directly and it will run in python's internal text editor.
+	2. If you open the replit project you can just hit the run button and the PA-1-Source.py will run. 
+	3. You can run the PA-1-Source.exe as long as your computer trusts that it isn't a virus. 
+How were the spreadsheets generated?
+	In the code both the conclusions.txt and all of the spreadsheets are generated through the code. 
+For Conculsions.txt it is generated when the function call createConculsion.txt is called in the main program.
+For the spreadsheets we created a generic function saveToFile, that when is called it checks if the spreadsheet
+with that name exists and if it doesn't it creates the file and writes the propper output.
+Group Member contribution
+Keith Garri 100%
+Christian   100%
+Nathan Cobb 100%
