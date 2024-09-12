@@ -1,6 +1,6 @@
-(1)	Out of 1,000 pairs of integers, brute-force (v2) outperformed brute-force (v1) in 0 pairs; and the average saved time for these pairs of integers was 0 milliseconds.
-(2)	Out of 1,000 pairs of integers, the original version of Euclid outperformed brute-force (v1) in 0 pairs; and the average saved time for these pairs of integers was 0 milliseconds.
-(3)	Out of 1,000 pairs of integers, the original version of Euclid outperformed brute-force (v2) in 613 pairs; and the average saved time for these pairs of integers was 1.1892085363192038 milliseconds.
+(1)	Out of 1,000 pairs of integers, brute-force (v2) outperformed brute-force (v1) in 336 pairs; and the average saved time for these pairs of integers was 0.7084416491644723 milliseconds.
+(2)	Out of 1,000 pairs of integers, the original version of Euclid outperformed brute-force (v1) in 625 pairs; and the average saved time for these pairs of integers was 1.2059768676757812 milliseconds.
+(3)	Out of 1,000 pairs of integers, the original version of Euclid outperformed brute-force (v2) in 624 pairs; and the average saved time for these pairs of integers was 1.2135429260058281 milliseconds.
 (4)	Out of 1,000 pairs of integers, the second version of Euclid outperformed the original version of Euclid in 0 pairs; and the average saved time for these pairs of integers was 0 milliseconds.
-(5)	Out of 1,000 pairs of integers, the second version of Euclid outperformed brute-force (v1) in 0 pairs; and the average saved time for these x2 pairs of integers was 0 milliseconds.
-(6)	Out of 1,000 pairs of integers, the second version of Euclid outperformed brute-force (v2) in 613 pairs; and the average saved time for these x3 pairs of integers was 1.1892085363192038 milliseconds.
+(5)	Out of 1,000 pairs of integers, the second version of Euclid outperformed brute-force (v1) in 625 pairs; and the average saved time for these x2 pairs of integers was 1.2059768676757812 milliseconds.
+(6)	Out of 1,000 pairs of integers, the second version of Euclid outperformed brute-force (v2) in 624 pairs; and the average saved time for these x3 pairs of integers was 1.2135429260058281 milliseconds.

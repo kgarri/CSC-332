@@ -20,51 +20,51 @@ class gcfInfo(): #the gcf info class exists so the data struct is easy to recall
 def bruteForceAlgV1(a,b): #brute force Alg version 1 going upwards till you hit the smaller of the two numbers
     gcf = 0
     if a<b:
-        start = time.time()
+        start = time.perf_counter_ns()
         for i in range(1,a+1):
             if(b%i==0 and a%i==0): 
                 gcf=i
     else:
-        start = time.time()
+        start = time.perf_counter_ns()
         for i in range(1,b+1):
             if(b%i==0 and a%i==0): 
                 gcf=i
-    end = time.time()
+    end = time.perf_counter_ns()
     return(end-start,gcf)
 
 def bruteForceAlgV2(a,b): #brute force Alg version 2 going downwards till it devides by 1
     gcf = 0
     if a<b:
-        start = time.time()
+        start = time.perf_counter_ns()
         for i in range(a,1,-1):
             if(b%i==0 and a%i==0): 
                 gcf=i
                 break
         
     else:
-        start = time.time()
+        start = time.perf_counter_ns()
         for i in range(b, 1, -1):
             if(b%i==0 and a%i==0): 
                 gcf=i
                 break
     if gcf == 0:
         gcf = 1
-    end = time.time()
+    end = time.perf_counter_ns()
     return(end-start,gcf)
 
 def orginaleEculidsAlg(a,b): #The first version of the eculids alg
     r=1 # in python you have to declare a variable before using it in a loop
-    start = time.time()
+    start = time.perf_counter_ns()
     while r !=0:
         r = a - a/b*b
         a=b 
         b=r
-    end = time.time()
+    end = time.perf_counter_ns()
     return(end-start, a)
 
 def secEculidsAlg(a,b): #the second version of the eculids alg
     r = 1 # in python you have to declare a variable before using it in a loop
-    start = time.time()
+    start = time.perf_counter_ns()
     while r !=0:
         r = a - b
         if r>=b:
@@ -75,7 +75,7 @@ def secEculidsAlg(a,b): #the second version of the eculids alg
                     r = a-b *a/b
         a=b 
         b=r
-    end = time.time()
+    end = time.perf_counter_ns()
     return(end-start, a)
 
 def eculidsAlgRecursive(a,b): # a recursive version of eculids alg
@@ -84,7 +84,7 @@ def eculidsAlgRecursive(a,b): # a recursive version of eculids alg
     return(eculidsAlgRecursive(b%a, a))
 
 def secondsToMilliSeconds(seconds): # function to convert time from seconds to milliseconds
-    return (seconds/pow(10,-3))
+    return (float(seconds/pow(10,6)))
 
 
     
@@ -160,7 +160,7 @@ if __name__ == "__main__": #Main for the project
     HEADER1 = "Number One, Number Two, Their GCD, Time Spent(Milliseconds)\n"
     HEADER2 = "Statistics, Milliseconds\n"
     #seed for the random number gen
-    seed = time.time()
+    seed = time.perf_counter_ns()
     random.seed(seed)
     # For loop of 1000
     for i in range(1000): 
@@ -185,9 +185,9 @@ if __name__ == "__main__": #Main for the project
         eculid2arr.append(gcfInfo(a,b,gcf,algtime))
 
         #function calls for recursive eculids alg 
-        start = time.time()
+        start = time.perf_counter_ns()
         gcf = eculidsAlgRecursive(a,b)
-        algtime = time.time() - start
+        algtime = time.perf_counter_ns() - start
         eculid3arr.append(gcfInfo(a,b,gcf,algtime))
 
     #saveToFile Function Calls
