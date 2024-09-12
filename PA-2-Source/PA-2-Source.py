@@ -76,19 +76,19 @@ if __name__ == "__main__": #Start of main
         userinput = input("Please enter the interger number 1-9 to access the arrays:")
         try:
             moduserinput = int(userinput) - 1
+            if moduserinput>-1 and moduserinput<=8:
+                print("Sorted, Unsorted")
+                for i in range(len(storage[moduserinput].sorted)):
+                    print(storage[moduserinput].sorted[i], storage[moduserinput].unsorted[i])
+                userinput=input("Want to access another array: Y/N ")
+                if userinput.lower() == 'y':
+                    continue
+                else: 
+                    break
+            else: 
+                print("User entered a number greater than 9 or less than 1")
         except ValueError:
             print("User inputed a non number")
-        if moduserinput>-1 and moduserinput<=8:
-            print("Sorted, Unsorted")
-            for i in range(len(storage[moduserinput].sorted)):
-                print(storage[moduserinput].sorted[i], storage[moduserinput].unsorted[i])
-            userinput=input("Want to access another array: Y/N ")
-            if userinput.lower() == 'y':
-                continue
-            else: 
-                break
-        else: 
-            print("User entered a number greater than 9 or less than 1")
 
 
     
