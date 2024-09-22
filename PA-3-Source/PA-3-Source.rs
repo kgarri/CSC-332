@@ -71,7 +71,7 @@ impl fmt::Display for Fibonacci {
 }
 
 /*rec_fib should obviously be the recursive fibonacci function
-   it has two base cases when n=1 return 0
+   it has two base cases when n=1 return 1
    and when n = 2 return 1
    else
    call two versions of itself one with n-1 as the input another with n-2 as the input
