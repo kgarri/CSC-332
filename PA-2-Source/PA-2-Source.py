@@ -66,6 +66,7 @@ if __name__ == "__main__": #Start of main
     filename = "Mergesort_Time.csv"
     for i in range(1,10): #used to start the array creation
         arr = [rand.randint(0,1000) for i in range(i*1000)]
+        print(len(arr))
         start = time.perf_counter_ns()
         sortarr = mergesort(arr)
         end = time.perf_counter_ns() - start
