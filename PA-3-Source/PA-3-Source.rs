@@ -99,6 +99,25 @@ fn dp_fib(n: i64, cache: &mut HashMap<i64, i64>) -> i64 {
     cache.insert(n, result);
     return result;
 }
+fn linear_fib(n:i64) -> i64 {
+    let mut a=1;
+    let mut b=1;
+    let mut i = 2;
+
+    if n < 2{
+        return 1;
+
+    }
+
+    while i < n{
+        let tmp = b;
+        b += a;
+        a = tmp;
+        i+=1;
+    }
+
+    return b;
+}
 
 /*get_num() is an atomic function that is meant to get the user input of the index value they want returned from the fibonacci sequence
 this is because it is utlized in multiple places and just want to ensure that the actual value inputed is a number
@@ -175,6 +194,7 @@ fn main() {
         println!("\nPlease select one of the following uwu <3:");
         println!("[1]: Recrussive Fibonacci");
         println!("[2]: Dynamic Programming Fibonacci");
+        println!("[3]: Linear Programmed Version of Fibonacci"); 
 
         let mut input = String::new(); // user input
         let mut keep_going = String::new(); //more user input
@@ -188,7 +208,7 @@ fn main() {
             1 => {
                 let number = get_num();
                 if number == -1 {
-                    println!("Failed to get number")
+                    println!("Failed to get number");
                 } else {
                     print_timeit!(rec_fib, number);
                 }
@@ -196,9 +216,17 @@ fn main() {
             2 => {
                 let number = get_num();
                 if number == -1 {
-                    println!("Failed to get number")
+                    println!("Failed to get number");
                 } else {
                     print_timeit!(dp_fib, number, &mut map);
+                }
+            }
+            3 =>{
+                let number = get_num();
+                if number == -1 {
+                    println!("Failed to get number");
+                } else {
+                    print_timeit!(linear_fib, number);
                 }
             }
             _ => println!("Invalid input recived"),
