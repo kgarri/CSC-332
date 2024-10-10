@@ -1,5 +1,15 @@
     To run this program you can eitheer excute the .exe or the linux executable on your desktop or run this in the replit
-by clicking on the replit link file provided and creating a copy of the  repostiory and hitting run. 
+by clicking on the replit link file provided and creating a copy of the  repostiory and hitting run.
+
+Replit Instructions:
+So replit recently had an update and it sort of broke the rust toolchain for the site, however due to the
+use of a linux kernal on replit you can brute force replit into doing exactly what you want through the 
+following steps. 
+    1. use chmod 777 on /home/runner/.bashrc to allow everyone to access and change this file including rust
+    2. use command curl https://sh.rustup.rs -sSf | sh to download the rust toolchain
+    3. select the default options try this a few times if it gives any errors or struggles to reconnect
+        for some reason replit doesn't like this.
+    4. Profit/ be able to run rust in replit, hopefully this is through enough for you to run the replit
 
 Group Member contribution
 Keith Garri       100%
