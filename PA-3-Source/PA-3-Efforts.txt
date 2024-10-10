@@ -1,0 +1,7 @@
+    To run this program you can eitheer excute the .exe or the linux executable on your desktop or run this in the replit
+by clicking on the replit link file provided and creating a copy of the  repostiory and hitting run. 
+
+Group Member contribution
+Keith Garri       100%
+Christian Ellington   100%
+Nathan Cobb       100%
