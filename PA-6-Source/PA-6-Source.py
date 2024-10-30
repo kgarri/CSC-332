@@ -25,16 +25,66 @@ def print_matrix(seq1,seq2, arr):
 def charArr(string):
     return [c for c in string]
 
-def cell_allignment(char1, char2, gap, match, mismatch):
+def score(char1, char2, gap, match, mismatch):
     if char1 == char2:
         return match 
     elif char1 == "_" or char2== "_":
         return  gap
     return mismatch
 
+def print_all_alingments(i, j, arr, seq1, seq2, mismatch, gap, match, alignA, alignB, align_score,alignments):
+    i = i
+    j = j
+    while(i>0 and j>0):
+        if(i>0 and j>0 and arr[i][j] == arr[i-1][j-1] + score(seq1[j], seq2[i], gap, match, mismatch)):
+            cp_alignA = alignA.copy()
+            cp_alignB = alignB.copy()
+            cp_alignA.insert(0,seq2[i])
+            cp_alignB.insert(0,seq1[j])
+            tmpi = i-1
+            tmpj = j-1
+            print_all_alingments(tmpi,tmpj, arr, seq1, seq2, mismatch, gap, match, cp_alignA, cp_alignB, align_score,alignments)
+            
+        if(i>0 and arr[i][j] == arr[i-1][j]+gap):
+            cp_alignA = alignA.copy()
+            cp_alignB = alignB.copy()
+            cp_alignA.insert(0,seq2[i])
+            cp_alignB.insert(0,"_")
+            tmpi = i-1
+            print_all_alingments(tmpi,j, arr, seq1, seq2, mismatch, gap, match, cp_alignA, cp_alignB, align_score,alignments)
+        if(j>0 and arr[i][j] == arr[i][j-1]+gap):
+            cp_alignA = alignA.copy()
+            cp_alignB = alignB.copy()
+            cp_alignA.insert(0,"_")
+            cp_alignB.insert(0,seq1[j])
+            tmpj = j - 1
+            print_all_alingments(i,tmpj, arr, seq1, seq2, mismatch, gap, match, cp_alignA, cp_alignB, align_score,alignments)
+        break
+    if i==0 and j==0:
+        if len(alignments) > 0:
+            align_1 = "".join(alignA)
+            align_2 = "".join(alignB)
+            matches = 0
+            for items in alignments:
+                if align_1 == items[0] and align_2 == items[1]:
+                    matches += 1
+            if matches == 0:
+                alignments.append([align_1,align_2])
+        else: 
+            alignments.append(["".join(alignA), "".join(alignB)])
 def optimal_algingment(match, mismatch, gap, seq1, seq2):
-    seq1.insert(0,'_')
-    seq2.insert(0,'_')
+    try:
+        index = seq1.index("_")
+        seq1.pop(index)
+        seq1.insert(0,"_")
+    except:
+        seq1.insert(0,"_")
+    try:
+        index = seq2.index("_")
+        seq2.pop(index)
+        seq2.insert(0,"_")
+    except:
+        seq2.insert(0,"_")       
 
     arr = [[0 for i in range(len(seq1))] for i in range(len(seq2))]
     print(len(arr))
@@ -44,7 +94,7 @@ def optimal_algingment(match, mismatch, gap, seq1, seq2):
     traceback = [[str(obj) for obj in item] for item in arr]
     for i in range(1,len(arr)):
         for j in range(1, len(arr[i])):
-            diagonal = arr[i-1][j-1] + cell_allignment(seq1[j], seq2[i], gap, match, mismatch)
+            diagonal = arr[i-1][j-1] + score(seq1[j], seq2[i], gap, match, mismatch)
             top = arr[i-1][j]+gap
             left = arr[i][j-1]+gap
             values = [diagonal, top, left]
@@ -61,19 +111,83 @@ def optimal_algingment(match, mismatch, gap, seq1, seq2):
 
             item = "".join(item)
             traceback[i][j] = item
-            print_matrix(seq1,seq2,traceback)
+    print_matrix(seq1,seq2,traceback)
+    alignments = []
+    print_all_alingments(len(seq2)-1, len(seq1)-1, arr, seq1, seq2, mismatch, gap, match, [], [], arr[-1][-1], alignments)
+    return (alignments, arr[-1][-1])
+
+
+    
+def print_alignments(alignments, total_score):
+    print(f"The maxium score for these sequnces is {total_score} for the following alignments: ")
+    for alignA, alignB in alignments:
+        print(alignA)
+        print(alignB)
+        print()
+    
+
+def enterNumber(string):
+    flag = True
+    while flag:
+        try:
+            num = int(input(string))
+            flag = False
+            return num
+        except ValueError:
+            print("\nPlease enter in a number")
+def enterChar():
+    flag = True
+    while flag:
+        try:
+            character = input("Please enter in another character: ")[0].upper()
+            flag = False
+            return character
+        except ValueError:
+            print("Please enter in one character")
+
+
+def enterSequence():
+    flag = True 
+    seq = []
+    while flag:
+        character = enterChar()
+        seq.append(character)
+        cont = input("Do you wish to continue Y/N: ")
+        if cont.lower() != "y":
+            flag = False
+            break
+
+    return seq
+        
         
 
+        
 
     
-    
 if  __name__ == "__main__":
-    gap = -1
-    mismatch = -1
-    match = 1
-    seq1 = ["G", "C", "A", "T", "G", "C", "G"]
-    seq2 = ["G","A","T", "T", "A", "C", "A"]
-    optimal_algingment(match, mismatch, gap, seq1, seq2)
+    while True:
+        gap = enterNumber("Please enter in your gap value: ")
+        mismatch = enterNumber("Please enter in your mismatch value: ")
+        match = enterNumber("Please enter in your match value: ")
+        print("You may now begin filing  in sequence 1")
+        seq1 = enterSequence()
+        print("You may now begin filing in sequence 2")
+        seq2 = enterSequence()
+        print(f"gap = {gap}")
+        print(f"mismatch = {mismatch}")
+        print(f"match = {match}")
+
+        alignments, total_score = optimal_algingment(match, mismatch, gap, seq1, seq2)
+        view_alignments = input("Do you wish to view all alignments Y/N: ")
+        if view_alignments.lower() == "y":
+            print_alignments(alignments, total_score)
+        cont = input("Do you wish to continue Y/N: ")
+
+        if cont.lower() != "y":
+            print("Thank you for using this program")
+            break 
+
+
 
 
 
