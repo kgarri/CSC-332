@@ -1,0 +1,9 @@
+How to run the program?
+1. If you have python installed on your system you can just execute the python file directly and it will run in python's internal text editor.
+2. If you open the Replit project you can just hit the run button and the PA-6-Source.py will run.
+
+
+Group Member contribution
+Keith Garri       100%
+Christian Ellington   100%
+Nathan Cobb       100%% 
